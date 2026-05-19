@@ -2,12 +2,15 @@
   "name": "summary-explorer",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://sachingooo.github.io/summary-explorer-public-mobile/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@mantine/core": "^9.2.0",
