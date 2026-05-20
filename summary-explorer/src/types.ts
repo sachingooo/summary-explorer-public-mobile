@@ -9,3 +9,6 @@ export type EducationalObjectiveData = {
     exhibits: string[];
     searchableText?: string; // Optional property for searchable text
 };
+
+export const TEST_NAMES = ['Step 1', 'Step 2', 'Step 3'] as const;
+export type TestName = (typeof TEST_NAMES)[number];

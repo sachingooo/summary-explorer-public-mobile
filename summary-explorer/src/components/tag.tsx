@@ -5,7 +5,7 @@ export const Tag = (props: { tag: string; setCurrentSearch: (search: string) => 
     if (!tag) return null;
 
     return (
-        <Button variant="light" size="xs" onClick={() => setCurrentSearch(tag)}>
+        <Button variant="light" size="xs" style={{ height: "25px", padding: "4px 8px" }} onClick={() => setCurrentSearch(tag)}>
             {tag}
         </Button>
     );
