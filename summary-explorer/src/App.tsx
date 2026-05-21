@@ -236,7 +236,6 @@ export default function App() {
   });
 
   const handleSubmit = (values: { userNumber: number }) => {
-    console.log('Submitted Number:', values.userNumber);
     requestAnimationFrame(() => {
       scrollToIndex(values.userNumber, itemsContainerRef);
     });

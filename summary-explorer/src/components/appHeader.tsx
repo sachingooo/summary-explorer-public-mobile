@@ -19,7 +19,10 @@ import {
 import type { Dispatch, SetStateAction, ChangeEvent } from 'react';
 import type { UseFormReturnType } from '@mantine/form';
 import { PositionJumpModal } from './positionJumpModal';
+import { FlagModal } from './flagModal';
 import { type TestName, TEST_NAMES } from '../types';
+import { useDisclosure, useLongPress } from '@mantine/hooks';
+
 
 type AppHeaderProps = {
     currentSearch: string;
@@ -60,6 +63,14 @@ export function AppHeader({
     form,
     handleSubmit,
 }: AppHeaderProps) {
+
+    const [openedFlagModal, { open: openFlagModal, close: closeFlagModal }] =
+        useDisclosure(false);
+
+    const longPressHandler = useLongPress(() => {
+        openFlagModal();
+    }, { threshold: 800 });
+
     return (
         <AppShell.Header withBorder py={16}>
             <Box
@@ -108,6 +119,7 @@ export function AppHeader({
                                 radius="md"
                                 aria-label="Flag"
                                 onClick={toggleFlaggedMode}
+                                {...longPressHandler}
                             >
                                 {flaggedMode ? (
                                     <IconFlagFilled size={22} stroke={2.2} />
@@ -115,7 +127,10 @@ export function AppHeader({
                                     <IconFlag size={22} stroke={2.2} />
                                 )}
                             </ActionIcon>
-
+                            <FlagModal
+                                opened={openedFlagModal}
+                                onClose={closeFlagModal}
+                            />
                             <ActionIcon
                                 style={{
                                     border: 'none',

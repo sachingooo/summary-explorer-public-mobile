@@ -34,7 +34,6 @@ export const scrollToIndex = (
     };
 
     const itemElements = itemsContainerRef.current?.children;
-    console.log(itemElements);
 
     const indexToPositionMap: { x: number; y: number }[] = [];
     if (itemElements) {
