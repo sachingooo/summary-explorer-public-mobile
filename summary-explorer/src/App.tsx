@@ -9,7 +9,7 @@ import { useForm } from '@mantine/form';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import '@mantine/core/styles.css';
 import './index.css';
-import { decryptStr } from './server/contentManagement';
+import { decryptStr, saveSessionState, loadSessionState } from './server/contentManagement';
 import type { EducationalObjectiveData, TestName } from './types';
 import { AppHeader } from './components/appHeader';
 import { GradientOverlays } from './components/gradientOverlays';
@@ -136,7 +136,7 @@ export default function App() {
     }
 
     setCurrentVisibleEos(filteredEos);
-  }, [currentSearch, currentTest, cont, flaggedMode]);
+  }, [currentSearch, currentTest, cont, flaggedMode, flaggedItemQids]);
 
   const dataLoaded = Array.isArray(cont.s1) && Array.isArray(cont.s2) && Array.isArray(cont.s3);
 
@@ -144,12 +144,24 @@ export default function App() {
     //check if test is included in the TestName type
     if (test === 'Step 1' || test === 'Step 2' || test === 'Step 3') {
       setCurrentTest(test);
+      setFirstVisibleIndex(0);
+      setLastVisibleIndex(0);
+
+      requestAnimationFrame(() => {
+        scrollToIndex(0, itemsContainerRef);
+      });
     }
   }, []);
 
   const updateCurrentSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const currentSearchValue = event.target.value;
     setCurrentSearch(currentSearchValue);
+    setFirstVisibleIndex(0);
+    setLastVisibleIndex(0);
+
+    requestAnimationFrame(() => {
+      scrollToIndex(0, itemsContainerRef);
+    });
   }, []);
 
   const toggleFlaggedItem = useCallback((qid: number) => {
@@ -174,11 +186,6 @@ export default function App() {
   useEffect(() => {
     updateSearchResults();
   }, [currentSearch, currentTest, cont, updateSearchResults]);
-
-  useEffect(() => {
-    setFirstVisibleIndex(0);
-    setLastVisibleIndex(0);
-  }, [currentVisibleEos]);
 
   const totalVisible = currentVisibleEos?.length || 0;
   const clampedFirstVisibleIndex = totalVisible
@@ -230,12 +237,42 @@ export default function App() {
 
   const handleSubmit = (values: { userNumber: number }) => {
     console.log('Submitted Number:', values.userNumber);
-    scrollToIndex(values.userNumber, itemsContainerRef);
-    scrollToIndex(values.userNumber, itemsContainerRef);
-    scrollToIndex(values.userNumber, itemsContainerRef);
+    requestAnimationFrame(() => {
+      scrollToIndex(values.userNumber, itemsContainerRef);
+    });
     closePositionModal();
     form.reset();
   };
+
+  // on initial launch, load the saved session state and apply it
+  useEffect(() => {
+    const reinstateSavedState = async () => {
+      const savedState = loadSessionState();
+      if (savedState) {
+        setCurrentTest(savedState.currentTest);
+        setCurrentSearch(savedState.currentSearch);
+
+        // delay by 500ms to ensure content is loaded and rendered before scrolling
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        requestAnimationFrame(() => {
+          scrollToIndex(savedState.currentIndex, itemsContainerRef);
+        });
+      }
+    }
+
+    reinstateSavedState();
+  }, []);
+
+  // whenever currentTest, currentSearch, or the first visible index changes, save the session state
+  useEffect(() => {
+    const stateToSave = {
+      currentTest,
+      currentSearch,
+      currentIndex: firstVisibleIndex,
+    };
+    saveSessionState(stateToSave);
+  }, [currentTest, currentSearch, firstVisibleIndex]);
 
   return (
     <AppShell header={{ height: 132 }}>

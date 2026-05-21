@@ -1,9 +1,10 @@
 import CryptoJS from "crypto-js";
-import type { EducationalObjectiveData } from "../types";
+import { type EducationalObjectiveData, type SavedSessionState } from "../types";
 
 const EXPLORER_KEY_1 = "explorerKey1";
 const EXPLORER_KEY_2 = "explorerKey2";
 const SESSION_PASS_KEY = "sessionPass";
+const SESSION_STATE_KEY = "sessionState";
 
 const getExplorerKey = (storageKey: string): string => {
     const storedKey = localStorage.getItem(storageKey);
@@ -59,4 +60,20 @@ export const decryptStr = (encryptedData: string): EducationalObjectiveData[] =>
     const decryptedObj = JSON.parse(decryptedSrc) as EducationalObjectiveData[];
 
     return decryptedObj.map(cleanEducationalObjective);
+}
+
+export const loadSessionState = (): SavedSessionState | null => {
+    const savedState = localStorage.getItem(SESSION_STATE_KEY);
+    if (!savedState) {
+        return {
+            currentTest: 'Step 1',
+            currentSearch: '',
+            currentIndex: 0,
+        };
+    }
+    return JSON.parse(savedState) as SavedSessionState;
+}
+
+export const saveSessionState = (state: SavedSessionState) => {
+    localStorage.setItem(SESSION_STATE_KEY, JSON.stringify(state));
 }
