@@ -16,9 +16,9 @@ import { GradientOverlays } from './components/gradientOverlays';
 import { EducationalObjectiveList, scrollToIndex } from './components/educationalObjectiveList';
 
 export default function App() {
+  const [flaggedMode, setFlaggedMode] = useState(false);
   const [currentSearch, setCurrentSearch] = useState('');
   const [currentTest, setCurrentTest] = useState<TestName>('Step 1');
-  const [flaggedMode, setFlaggedMode] = useState(false);
   const [cont, setCont] = useState<{ [key: string]: any }>({});
   const [currentVisibleEos, setCurrentVisibleEos] = useState<EducationalObjectiveData[]>([]);
   const [firstVisibleIndex, setFirstVisibleIndex] = useState(0);
