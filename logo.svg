@@ -1,0 +1,178 @@
+<svg
+    width="467"
+    height="436"
+    viewBox="0 0 467 436"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="Medical education logo with book, stethoscope, and check mark"
+>
+    <defs>
+        <linearGradient id="navyGrad" x1="50" y1="360" x2="420" y2="80"
+            gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#0b46b5" />
+            <stop offset="1" stop-color="#082f63" />
+        </linearGradient>
+
+        <linearGradient id="cyanGrad" x1="90" y1="210" x2="210" y2="355"
+            gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#55e7f3" />
+            <stop offset="0.55" stop-color="#19b9d0" />
+            <stop offset="1" stop-color="#0989b8" />
+        </linearGradient>
+
+        <linearGradient id="checkGrad" x1="175" y1="250" x2="330" y2="120"
+            gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#0faea5" />
+            <stop offset="1" stop-color="#22d0bf" />
+        </linearGradient>
+
+        <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000000" flood-opacity="0.18" />
+        </filter>
+    </defs>
+
+    <!-- Stethoscope tubing -->
+    <path
+        d="M143 177
+       C126 132 129 82 157 57
+       C171 45 185 42 199 43"
+        fill="none"
+        stroke="#082f63"
+        stroke-width="13"
+        stroke-linecap="round"
+    />
+
+    <path
+        d="M266 43
+       C281 41 297 45 309 57
+       C335 82 338 126 323 164"
+        fill="none"
+        stroke="#082f63"
+        stroke-width="13"
+        stroke-linecap="round"
+    />
+
+    <!-- Stethoscope ear tips -->
+    <circle cx="198" cy="43" r="14" fill="#0b3f86" />
+    <circle cx="266" cy="43" r="14" fill="#0b3f86" />
+
+    <!-- Stethoscope lower left connector -->
+    <path
+        d="M143 177 L167 216"
+        fill="none"
+        stroke="#082f63"
+        stroke-width="18"
+        stroke-linecap="round"
+    />
+
+    <!-- Check mark -->
+    <path
+        d="M184 209
+       L232 257
+       L323 130"
+        fill="none"
+        stroke="url(#checkGrad)"
+        stroke-width="30"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        filter="url(#softShadow)"
+    />
+
+    <!-- Book base, left side -->
+    <path
+        d="M50 260
+       L72 260
+       L72 342
+       C108 343 144 348 186 372
+       C198 379 208 386 225 396
+       C176 366 118 357 50 358
+       Z"
+        fill="url(#navyGrad)"
+    />
+
+    <!-- Book base, right side -->
+    <path
+        d="M225 396
+       C252 378 287 362 331 354
+       C365 348 398 350 417 352
+       L417 330
+       C375 330 326 333 283 349
+       C258 358 239 373 225 396
+       Z"
+        fill="url(#navyGrad)"
+    />
+
+    <!-- Book spine / center crease -->
+    <path
+        d="M225 396
+       C223 366 219 330 210 291"
+        fill="none"
+        stroke="#06356f"
+        stroke-width="5"
+        stroke-linecap="round"
+    />
+
+    <!-- Left cyan pages -->
+    <path
+        d="M89 219
+       C121 229 166 250 207 307
+       C215 318 220 339 224 391
+       C191 341 148 306 89 291
+       Z"
+        fill="url(#cyanGrad)"
+        opacity="0.95"
+    />
+
+    <path
+        d="M88 247
+       C122 252 168 273 209 323
+       C216 335 221 359 224 392
+       C185 356 143 327 88 314
+       Z"
+        fill="url(#cyanGrad)"
+        opacity="0.9"
+    />
+
+    <path
+        d="M86 276
+       C122 281 171 301 211 340
+       C218 350 222 370 224 393
+       C184 367 139 346 86 338
+       Z"
+        fill="url(#cyanGrad)"
+        opacity="0.85"
+    />
+
+    <!-- Page highlight lines -->
+    <path
+        d="M95 232 C129 241 170 265 204 307"
+        fill="none"
+        stroke="#8ff1f6"
+        stroke-width="3"
+        opacity="0.55"
+    />
+
+    <path
+        d="M96 260 C134 270 176 293 209 328"
+        fill="none"
+        stroke="#8ff1f6"
+        stroke-width="3"
+        opacity="0.45"
+    />
+
+    <!-- Right stethoscope tube rising from book -->
+    <path
+        d="M225 396
+       C242 350 270 314 317 286
+       C344 269 365 256 377 242"
+        fill="none"
+        stroke="#082f63"
+        stroke-width="10"
+        stroke-linecap="round"
+    />
+
+    <!-- Stethoscope chestpiece -->
+    <circle cx="386" cy="241" r="41" fill="#082f63" />
+    <circle cx="386" cy="241" r="28" fill="#f7fbff" />
+    <circle cx="386" cy="241" r="16" fill="#082f63" />
+</svg>
